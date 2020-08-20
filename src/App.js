@@ -7,6 +7,7 @@ import {
   Card,
   CardContent,
 } from "@material-ui/core";
+import InfoBox from "./InfoBox";
 
 function App() {
   const [countries, setCountries] = useState([]);
@@ -63,8 +64,11 @@ function App() {
       {/* Info Boxes 1 */}
       <div className="app__stats">
         {/* Info Boxes 1 -> cases*/}
+        <InfoBox title="Coronavirus Cases" cases={1500} total={2000} />
         {/* Info Boxes 2 -> recoveries*/}
+        <InfoBox title="Recovered" cases={1500} total={2000} />
         {/* Info Boxes 3 -> */}
+        <InfoBox title="Total Cases" cases={1500} total={2000} />
       </div>
 
 
