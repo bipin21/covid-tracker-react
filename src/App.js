@@ -42,41 +42,48 @@ function App() {
 
   return (
     <div className="app">
-      <div className="app__header">
-        <h1>Covid-19 Tracker</h1>
-        <FormControl className="app__dropdown">
-          <Select variant="outlined"
-            value={country}
-            onChange={onCountryChange}>
-            {/* Loop through all country */}
-            <MenuItem value="worldwide">Worldwide</MenuItem>
-            {
-              countries.map(country => (
-                <MenuItem value={country.value}>{country.name}</MenuItem>
-              ))
-            }
-          </Select>
-        </FormControl>
+      <div className="app_left">
+        <div className="app__header">
+          <h1>Covid-19 Tracker</h1>
+          <FormControl className="app__dropdown">
+            <Select variant="outlined"
+              value={country}
+              onChange={onCountryChange}>
+              {/* Loop through all country */}
+              <MenuItem value="worldwide">Worldwide</MenuItem>
+              {
+                countries.map(country => (
+                  <MenuItem value={country.value}>{country.name}</MenuItem>
+                ))
+              }
+            </Select>
+          </FormControl>
+        </div>
+
+        {/* Header */}
+        {/* Title + Selector */}
+
+        {/* Info Boxes 1 */}
+        <div className="app__stats">
+          {/* Info Boxes 1 -> cases*/}
+          <InfoBox title="Coronavirus Cases" cases={1500} total={2000} />
+          {/* Info Boxes 2 -> recoveries*/}
+          <InfoBox title="Recovered" cases={1500} total={2000} />
+          {/* Info Boxes 3 -> */}
+          <InfoBox title="Total Cases" cases={1500} total={2000} />
+        </div>
+
+        {/* Table info */}
+        <Map />
+
       </div>
-
-      {/* Header */}
-      {/* Title + Selector */}
-
-      {/* Info Boxes 1 */}
-      <div className="app__stats">
-        {/* Info Boxes 1 -> cases*/}
-        <InfoBox title="Coronavirus Cases" cases={1500} total={2000} />
-        {/* Info Boxes 2 -> recoveries*/}
-        <InfoBox title="Recovered" cases={1500} total={2000} />
-        {/* Info Boxes 3 -> */}
-        <InfoBox title="Total Cases" cases={1500} total={2000} />
-      </div>
-
-      {/* Table info */}
-      <Map />
-      {/* Graph */}
-
-      {/* Map */}
+      <Card className="app_right">
+        {/* Table */}
+        <CardContent>
+              <h3>Test</h3>
+        </CardContent>
+        {/* Graph */}
+      </Card>
     </div>
   );
 }
