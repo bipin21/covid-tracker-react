@@ -71,7 +71,6 @@ function App() {
         <InfoBox title="Total Cases" cases={1500} total={2000} />
       </div>
 
-
       {/* Table info */}
       {/* Graph */}
 
