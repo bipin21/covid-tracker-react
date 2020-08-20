@@ -22,8 +22,8 @@ function App() {
         .then((data) => {
 
           const countries = data.map((country) => ({
-            name : country.country,
-            value : country.countryInfo.iso2, // UK, USA, FR
+            name: country.country,
+            value: country.countryInfo.iso2, // UK, USA, FR
           }));
 
           setCountries(countries);
@@ -44,7 +44,7 @@ function App() {
         <h1>Covid-19 Tracker</h1>
         <FormControl className="app__dropdown">
           <Select variant="outlined"
-            value={country} 
+            value={country}
             onChange={onCountryChange}>
             {/* Loop through all country */}
             <MenuItem value="worldwide">Worldwide</MenuItem>
@@ -61,8 +61,12 @@ function App() {
       {/* Title + Selector */}
 
       {/* Info Boxes 1 */}
-      {/* Info Boxes 2 */}
-      {/* Info Boxes 3 */}
+      <div className="app__stats">
+        {/* Info Boxes 1 -> cases*/}
+        {/* Info Boxes 2 -> recoveries*/}
+        {/* Info Boxes 3 -> */}
+      </div>
+
 
       {/* Table info */}
       {/* Graph */}
