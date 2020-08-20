@@ -10,6 +10,7 @@ import {
 
 function App() {
   const [countries, setCountries] = useState([]);
+  const [country, setCountry] = useState('worldwide');
   // state = how to write a variable in react
   // https://disease.sh/v3/covid-19/all
   // useEffect
@@ -32,15 +33,21 @@ function App() {
     getCountiresData();
   }, []);
 
+  const onCountryChange = async (event) => {
+    const countryCode = event.target.value;
+    setCountry(countryCode);
+  }
+
   return (
     <div className="app">
       <div className="app__header">
         <h1>Covid-19 Tracker</h1>
         <FormControl className="app__dropdown">
           <Select variant="outlined"
-            value="abc"
-          >
+            value={country} 
+            onChange={onCountryChange}>
             {/* Loop through all country */}
+            <MenuItem value="worldwide">Worldwide</MenuItem>
             {
               countries.map(country => (
                 <MenuItem value={country.value}>{country.name}</MenuItem>
