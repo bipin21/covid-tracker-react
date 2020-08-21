@@ -13,6 +13,16 @@ import Map from "./Map";
 function App() {
   const [countries, setCountries] = useState([]);
   const [country, setCountry] = useState('worldwide');
+  const [countryInfo, setCountryInfo] = useState({});
+
+  useEffect(() => {
+    fetch("https://disease.sh/v3/covid-19/all")
+      .then(response => response.json())
+      .then(data => {
+        setCountryInfo(data);
+      })
+  }, [])
+
   // state = how to write a variable in react
   // https://disease.sh/v3/covid-19/all
   // useEffect
@@ -37,8 +47,21 @@ function App() {
 
   const onCountryChange = async (event) => {
     const countryCode = event.target.value;
-    setCountry(countryCode);
+
+    const url = countryCode === 'worldwide' ? 'https://disease.sh/v3/covid-19/all' :
+      `https://disease.sh/v3/covid-19/countries/${countryCode}`;
+
+    await fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        setCountry(countryCode);
+
+        // 
+        setCountryInfo(data);
+      })
   }
+
+  console.log("Country info >> ", countryInfo);
 
   return (
     <div className="app">
@@ -66,11 +89,11 @@ function App() {
         {/* Info Boxes 1 */}
         <div className="app__stats">
           {/* Info Boxes 1 -> cases*/}
-          <InfoBox title="Coronavirus Cases" cases={1500} total={2000} />
+          <InfoBox title="Coronavirus Cases" cases={countryInfo.todayCases} total={countryInfo.cases} />
           {/* Info Boxes 2 -> recoveries*/}
-          <InfoBox title="Recovered" cases={1500} total={2000} />
+          <InfoBox title="Recovered" cases={countryInfo.todayRecovered} total={countryInfo.recovered} />
           {/* Info Boxes 3 -> */}
-          <InfoBox title="Total Cases" cases={1500} total={2000} />
+          <InfoBox title="Deaths" cases={countryInfo.todayDeaths} total={countryInfo.deaths} />
         </div>
 
         {/* Table info */}
@@ -80,7 +103,7 @@ function App() {
       <Card className="app_right">
         {/* Table */}
         <CardContent>
-              <h3>Test</h3>
+          <h3>Test</h3>
         </CardContent>
         {/* Graph */}
       </Card>
