@@ -25,6 +25,7 @@ function App() {
     lat: 34.80746, lng:-40.4796
   });
   const [mapZoom, setMapZoom] = useState(3);
+  const [mapCountries, setMapCountries] = useState([]);
 
   useEffect(() => {
     fetch("https://disease.sh/v3/covid-19/all")
@@ -51,6 +52,7 @@ function App() {
 
           let sortedData = sortData(data);
           setTableData(sortedData);
+          setMapCountries(data);
           setCountries(countries);
         });
     };
@@ -71,6 +73,8 @@ function App() {
 
         // 
         setCountryInfo(data);
+        setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
+        setMapZoom(4);
       })
   }
 
@@ -109,7 +113,7 @@ function App() {
         </div>
 
         {/* Table info */}
-        <Map center={mapCenter} zoom={mapZoom} />
+        <Map countries={mapCountries} casesType={casesType} center={mapCenter} zoom={mapZoom} />
 
       </div>
       <Card className="app_right">
